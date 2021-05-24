@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public Rigidbody playerrRigidbody;
     public float speed = 80f;
 
+    public int hp = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,5 +34,14 @@ public class PlayerController : MonoBehaviour
         GameManager gameManager = FindObjectOfType<GameManager>();
 
         gameManager.Endgame();
+    }
+
+    public void GetDamage(int damage)
+    {
+        hp -= damage;
+        if (hp <= 0)
+        {
+            Die();
+        }
     }
 }
