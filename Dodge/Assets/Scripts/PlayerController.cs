@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 80f;
 
     public int hp = 100;
+    public HPBar hpbar;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public void GetDamage(int damage)
     {
         hp -= damage;
+        hpbar.SetHP(hp);
         if (hp <= 0)
         {
             Die();

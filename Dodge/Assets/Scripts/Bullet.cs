@@ -32,6 +32,7 @@ public class Bullet : MonoBehaviour
             if (playerController != null)
             {
                 playerController.GetDamage(damage);
+                Destroy(gameObject);
                 //playerController.Die();
             }
         }
