@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject level;
     public GameObject bulletSpawnerPrefab;
+    public GameObject ItemPrefab;
+    int prevItemCheak;
+
     private Vector3[] bulletSpawners = new Vector3[4];
     int spawnCounter = 0;
 
@@ -48,6 +51,16 @@ public class GameManager : MonoBehaviour
         {
             surviveTime += Time.deltaTime;
             timeText.text = "Time : " + (int)surviveTime;
+
+            if (surviveTime % 5f <= 0.01f && prevItemCheak == 4)
+            {
+                Vector3 randpos = new Vector3(Random.Range(-4f, 4f), 0f, Random.Range(-4f, 4f));
+
+                GameObject item = Instantiate(ItemPrefab, randpos, Quaternion.identity);
+                item.transform.parent = level.transform;
+                item.transform.localPosition = randpos;
+            }
+            prevItemCheak = (int)(surviveTime % 5f);
 
             if (surviveTime < 5f && spawnCounter == 0)
             {
